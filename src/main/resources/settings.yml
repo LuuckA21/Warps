@@ -1,0 +1,78 @@
+# !-----------------------------------------------------------------------------------------------!
+#                       Welcome to the main configuration of ${project.name}
+# !-----------------------------------------------------------------------------------------------!
+#
+#    This is the main plugin's settings class. You can use SimpleSettings to load values from it,
+#    and update it automatically.
+#
+#    For support and documentation, please visit:
+#    - https://github.com/${author}/${project.name}/wiki
+#
+# !-----------------------------------------------------------------------------------------------!
+#
+#    1) COLOR CODES are supported with the '&' character.
+#       - For usage, see http://minecraftwiki.net/wiki/Formatting_codes
+#       - When you use them, place quotes around the message like this: "Hello &cworld."
+#       - To use HEX colors, use the MiniMessage <#123456> syntax: "Hello <#123456>world."
+#
+#    2) TO HIDE any message, set it to 'none'.
+#
+#    3) For UNICODE CHARACTERS (smileys, symbols, ..), save the file in UTF-8 encoding. See
+#       - https://github.com/${author}/${project.name}/wiki/Use-Right-Encoding
+#
+#    4) JSON is supported.
+#       - For usage, see https://github.com/${author}/${project.name}/wiki/JSON
+#
+#    5) WHITELISTS can be turned into blacklists, by putting "@blacklist" on the first line.
+#       - Doing such, filters will only apply for messages in those lists.
+#
+#    PS: Everything above applies for all files in ${project.name}/ folder.
+#
+# !-----------------------------------------------------------------------------------------------!
+
+# -------------------------------------------------------------------------------------------------
+# What commands should trigger the main plugin command group?
+#
+# * THE FIRST ALIAS IS THE MAIN LABEL, YOU CAN CHANGE IT BUT DO NOT REMOVE IT. *
+# * EXAMPLE: [boss, b] will trigger your main command from "/boss" or "/b" *
+# -------------------------------------------------------------------------------------------------
+Command_Aliases: [ "warps" ]
+
+# -------------------------------------------------------------------------------------------------
+# What language should we use for messages? Use the "dumplocale" subcommand to move the file
+# to your plugin's folder so you can edit it easily.
+#
+# Available: en_US (English)
+# -------------------------------------------------------------------------------------------------
+Locale: en_US
+
+# -------------------------------------------------------------------------------------------------
+# The prefix used in front of most chat or console messages. You can manually use it with
+# {prefix_plugin} variable anywhere.
+# -------------------------------------------------------------------------------------------------
+Prefix: "&8[&c${project.name}&8]&7"
+
+# -------------------------------------------------------------------------------------------------
+# Time of some plugin's operations is measured. You can also use the LagCatcher class to invoke
+# this feature. We log a console message if an operation takes over the time below (milliseconds).
+# Set to -1 to disable.
+# -------------------------------------------------------------------------------------------------
+Log_Lag_Over_Milis: 100
+
+# -------------------------------------------------------------------------------------------------
+# Should we notify you about new versions of the plugin to players with pluginName.update.notify
+# permission and the console on startup?
+# -------------------------------------------------------------------------------------------------
+#Notify_New_Versions: true # requires you to override getBuiltByBitX methods in main plugin's class
+
+# -------------------------------------------------------------------------------------------------
+# Send anonymized error reports to sentry.io? This helps us fix bugs without you needing to
+# report them manually.
+# -------------------------------------------------------------------------------------------------
+#Sentry: true # override getSentryDsn() in main plugin's class
+
+# -------------------------------------------------------------------------------------------------
+# List of section names that will print informative messages about this plugin's features.
+# The Debugger class utilizes this key and will only print messages for sections enabled below.
+# -------------------------------------------------------------------------------------------------
+Debug: [ ]
