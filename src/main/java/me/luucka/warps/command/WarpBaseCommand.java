@@ -1,19 +1,17 @@
-package me.luucka.warps.command.admin;
+package me.luucka.warps.command;
 
 import me.luucka.warps.WarpPlugin;
 import me.luucka.warps.model.Warp;
-import org.mineacademy.fo.command.SimpleCommandGroup;
-import org.mineacademy.fo.command.SimpleSubCommand;
+import org.mineacademy.fo.command.SimpleCommand;
 
 import java.util.List;
 
-public abstract class WarpAdminSubCommand extends SimpleSubCommand {
+public abstract class WarpBaseCommand extends SimpleCommand {
 
-
-	WarpAdminSubCommand(final SimpleCommandGroup parent, final String sublabel) {
-		super(parent, sublabel);
+	WarpBaseCommand(String label, List<String> aliases) {
+		super(label, aliases);
 	}
-
+	
 	protected final boolean warpExists(final String name) {
 		return WarpPlugin.getInstance().getWarpManager().exists(name);
 	}

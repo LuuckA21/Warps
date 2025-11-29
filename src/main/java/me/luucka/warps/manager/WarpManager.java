@@ -4,6 +4,8 @@ import me.luucka.warps.database.Database;
 import me.luucka.warps.database.WarpsTable;
 import me.luucka.warps.model.Warp;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
+import org.mineacademy.fo.ValidCore;
 import org.mineacademy.fo.debug.Debugger;
 
 import java.util.List;
@@ -23,15 +25,15 @@ public final class WarpManager {
 		return id.toLowerCase(Locale.ROOT).trim();
 	}
 
-	public Warp create(final String id, final Location location) {
+	public Warp create(final String id, final Location location, final Player owner) {
 		final String key = normalizeId(id);
 
 		if (loadedWarps.containsKey(key)) {
 			return null;
 		}
 
-		final Warp warp = new Warp(key, location);
-		warp.insert();
+		final Warp warp = new Warp(key, location, owner);
+		warp.insertToQueue();
 		loadedWarps.put(key, warp);
 		return warp;
 	}
@@ -41,13 +43,17 @@ public final class WarpManager {
 		return loadedWarps.containsKey(normalizeId(id));
 	}
 
+	public void delete(final Warp warp) {
+		ValidCore.checkNotNull(warp, "Warp cannot be null!");
+		loadedWarps.remove(warp.getName());
+		warp.delete();
+	}
+
 	public void delete(final String id) {
-		if (id == null) return;
+		ValidCore.checkNotNull(id, "Warp id cannot be null!");
+		ValidCore.checkNotEmpty(id, "Warp id cannot be empty!");
 		final String key = normalizeId(id);
-		if (loadedWarps.containsKey(key)) {
-			loadedWarps.get(key).delete();
-			loadedWarps.remove(key);
-		}
+		delete(loadedWarps.get(key));
 	}
 
 	public Warp get(final String id) {

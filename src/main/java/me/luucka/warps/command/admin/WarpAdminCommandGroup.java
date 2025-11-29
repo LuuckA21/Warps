@@ -21,6 +21,8 @@ public final class WarpAdminCommandGroup extends SimpleCommandGroup {
 	protected void registerSubcommands() {
 		registerSubcommand(new CreateSubCommand(this));
 		registerSubcommand(new DeleteSubCommand(this));
+		registerSubcommand(new InfoSubCommand(this));
+		registerSubcommand(new EditSubCommand(this));
 		registerSubcommand(new DebugSubCommand());
 		registerSubcommand(new DumpLocaleSubCommand());
 		registerSubcommand(new ReloadSubCommand());

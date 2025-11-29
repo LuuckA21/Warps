@@ -21,12 +21,9 @@ public final class CreateSubCommand extends WarpAdminSubCommand {
 		final Player player = getPlayer();
 		final String warpName = args[0];
 
-		if (warpExists(warpName)) {
-			tellError("Warp '" + warpName + "' already exists!");
-			return;
-		}
+		checkBoolean(!warpExists(warpName), "Warp '" + warpName + "' already exists!");
 
-		WarpPlugin.getInstance().getWarpManager().create(warpName, player.getLocation());
+		WarpPlugin.getInstance().getWarpManager().create(warpName, player.getLocation(), player);
 		tellSuccess("Warp '" + warpName + "' created!");
 	}
 }

@@ -2,8 +2,11 @@ package me.luucka.warps.command.admin;
 
 import me.luucka.warps.WarpPlugin;
 import me.luucka.warps.menu.ConfirmationMenu;
+import me.luucka.warps.model.Warp;
 import org.bukkit.entity.Player;
 import org.mineacademy.fo.command.SimpleCommandGroup;
+
+import java.util.List;
 
 public final class DeleteSubCommand extends WarpAdminSubCommand {
 
@@ -24,31 +27,38 @@ public final class DeleteSubCommand extends WarpAdminSubCommand {
 		final String warpName = args[0];
 		boolean force = false;
 		if (args.length > 1) {
-			if (args[1].equalsIgnoreCase("force") || args[1].equalsIgnoreCase("-f")) {
+			if ("-f".equalsIgnoreCase(args[1])) {
 				force = true;
 			}
 		}
 
-		if (!warpExists(warpName)) {
-			tellError("Warp '" + warpName + "' do not exists!");
+		final Warp warp = getWarp(warpName);
+
+		if (force) {
+			deleteWarp(warp);
 			return;
 		}
 
-		if (force) {
-			deleteWarp(warpName);
-		} else {
-			new ConfirmationMenu(player, (confirmed) -> {
-				if (confirmed) {
-					deleteWarp(warpName);
-				} else {
-					tellError("Deletion cancelled!");
-				}
-			}).displayTo(player);
-		}
+		new ConfirmationMenu(player, confirmed -> {
+			if (confirmed) {
+				deleteWarp(warp);
+			} else {
+				tellError("Deletion cancelled!");
+			}
+		}).displayTo(player);
+
 	}
 
-	private void deleteWarp(final String warpName) {
-		WarpPlugin.getInstance().getWarpManager().delete(warpName);
-		tellSuccess("Warp '" + warpName + "' successfully deleted!");
+	@Override
+	protected List<String> tabComplete() {
+		if (args.length == 1) {
+			return completeLastWordWarpNames();
+		}
+		return NO_COMPLETE;
+	}
+
+	private void deleteWarp(final Warp warp) {
+		WarpPlugin.getInstance().getWarpManager().delete(warp);
+		tellSuccess("Warp '" + warp.getName() + "' successfully deleted!");
 	}
 }
