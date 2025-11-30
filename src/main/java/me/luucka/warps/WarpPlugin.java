@@ -2,6 +2,7 @@ package me.luucka.warps;
 
 import lombok.Getter;
 import me.luucka.warps.database.Database;
+import me.luucka.warps.manager.UniqueIdNameCacheManager;
 import me.luucka.warps.manager.WarpManager;
 import org.mineacademy.fo.platform.BukkitPlugin;
 
@@ -9,6 +10,9 @@ public final class WarpPlugin extends BukkitPlugin {
 
 	@Getter
 	private WarpManager warpManager;
+
+	@Getter
+	private UniqueIdNameCacheManager uniqueIdNameCacheManager;
 
 //	@Override
 //	public String[] getStartupLogo() {
@@ -34,6 +38,7 @@ public final class WarpPlugin extends BukkitPlugin {
 
 	@Override
 	protected void onPluginStart() {
+		uniqueIdNameCacheManager = new UniqueIdNameCacheManager();
 		warpManager = new WarpManager();
 	}
 

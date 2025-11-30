@@ -140,5 +140,29 @@
   "prefix-question": "<gray><dark_gray>[<bold><green>?<reset><dark_gray>]<gray>",
   "prefix-success": "<gray><dark_gray>[<bold><dark_green>✔<reset><dark_gray>]<gray>",
   "prefix-warn": "<gold><dark_gray>[<bold><gold>!<reset><dark_gray>]<gray>",
-  "tool-error": "<red>Oups! There was a problem with this tool! Please contact the administrator to review the console for details."
+  "tool-error": "<red>Oups! There was a problem with this tool! Please contact the administrator to review the console for details.",
+  "warp-not-found": "<red>Warp '{warp}' not found!",
+  "warp-already-exists": "<red>Warp '{warp}' already exists!",
+  "warp-disable": "<red>Warp '{warp}' is disabled!",
+  "warp-player-no-permission": "<red>You do not have permission to use warp '{warp}'.",
+  "warp-create-usage": "<name>",
+  "warp-create-description": "Create a new Warp",
+  "warp-create-success": "<gray>Warp '{warp}' created!",
+  "warp-delete-usage": "<name>",
+  "warp-delete-description": "Delete a Warp",
+  "warp-delete-success": "<gray>Warp '{warp}' successfully deleted!",
+  "warp-delete-cancel": "<gray>Deletion cancelled!",
+  "warp-info-usage": "<name>",
+  "warp-info-description": "Show information about a Warp",
+  "warp-info-text": [
+    "<gold><bold>--- <yellow>Warp Info</yellow> ---</bold></gold>",
+    "<gray>ID: <white>{warp}",
+    "<gray>Displayname: <reset>{displayname}",
+    "<gray>Location: <hover:show_text:'<gray>Click to teleport'><click:run_command:'/warp {warp}'><white>{world}</white> <gray>(x:</gray> <white>{x}</white> <gray>, y:</gray> <white>{y}</white> <gray>, z:</gray> <white>{z}</white> <gray>, yaw:</gray> <white>{yaw}</white> <gray>, pitch:</gray> <white>{pitch}</white><gray>)</gray></click></hover>",
+    "<gray>Owner: <white>{owner}",
+    "<gray>Permission protected: <white>{permission_protected}",
+    "<gray>Enabled: <white>{enabled}",
+    "<gray>Created at: <white>{created}",
+    "<gray>Last modified: <white>{modified}"
+  ]
 }

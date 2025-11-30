@@ -21,6 +21,55 @@ public final class UniqueIdNameCacheManager {
 		loadCache();
 	}
 
+	public void addToCache(final UniqueIdName uniqueIdName) {
+		this.uniqueIdName.put(uniqueIdName.getUuid(), uniqueIdName.getName());
+		nameUniqueId.put(uniqueIdName.getName(), uniqueIdName.getUuid());
+	}
+
+	public String getNameById(final UUID uuid) {
+		String playerName = uniqueIdName.get(uuid);
+		if (playerName == null) {
+			final UniqueIdName idName = loadCacheFromDatabaseById(uuid);
+			if (idName == null) return null;
+			playerName = idName.getName();
+		}
+		return playerName;
+	}
+
+	public UniqueIdName loadCacheFromDatabaseById(final UUID playerId) {
+		final UniqueIdName uuidToName = Database.getInstance().getRowWhere(
+				WarpsTable.UUID_NAME,
+				SimpleDatabase.Where.builder().equals("UUID", String.valueOf(playerId))
+		);
+		if (uuidToName == null) return null;
+		addToCache(uuidToName);
+		return uuidToName;
+	}
+
+	public UUID getIdByName(final String name) {
+		UUID uuid = nameUniqueId.get(name);
+		if (uuid == null) {
+			final UniqueIdName idName = loadCacheFromDatabaseByName(name);
+			if (idName == null) return null;
+			uuid = idName.getUuid();
+		}
+		return uuid;
+	}
+
+	public UniqueIdName loadCacheFromDatabaseByName(final String playerName) {
+		final UniqueIdName uuidToName = Database.getInstance().getRowWhere(
+				WarpsTable.UUID_NAME,
+				SimpleDatabase.Where.builder().equals("Name", playerName)
+		);
+		if (uuidToName == null) return null;
+		addToCache(uuidToName);
+		return uuidToName;
+	}
+
+	public List<String> getAllNames() {
+		return uniqueIdName.values().stream().toList();
+	}
+
 	private void loadCache() {
 		Debugger.debug("database", "Loading UniqueIdName from database...");
 		uniqueIdName.clear();

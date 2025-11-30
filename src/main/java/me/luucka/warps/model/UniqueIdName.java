@@ -2,6 +2,7 @@ package me.luucka.warps.model;
 
 import lombok.Getter;
 import me.luucka.warps.database.WarpsTable;
+import org.bukkit.entity.Player;
 import org.mineacademy.fo.collection.SerializedMap;
 import org.mineacademy.fo.database.Row;
 import org.mineacademy.fo.database.SimpleResultSet;
@@ -27,6 +28,10 @@ public final class UniqueIdName extends Row {
 		uuid = resultSet.getUniqueId("UUID");
 		name = resultSet.getString("Name");
 		lastSeen = resultSet.getLong("LastSeen");
+	}
+
+	public UniqueIdName(final Player player) {
+		this(player.getUniqueId(), player.getName());
 	}
 
 	public UniqueIdName(final UUID uuid, final String name) {

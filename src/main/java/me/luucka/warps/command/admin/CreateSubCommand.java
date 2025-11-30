@@ -3,14 +3,14 @@ package me.luucka.warps.command.admin;
 import me.luucka.warps.WarpPlugin;
 import org.bukkit.entity.Player;
 import org.mineacademy.fo.command.SimpleCommandGroup;
+import org.mineacademy.fo.settings.Lang;
 
 public final class CreateSubCommand extends WarpAdminSubCommand {
 
 	CreateSubCommand(final SimpleCommandGroup parent) {
 		super(parent, "create");
-//		this.setPermission(Permissions.Channel.JOIN.replace(".{channel}.{mode}", ""));
-		setUsage("<name>");
-		setDescription("Creates a new warp");
+		setUsage(Lang.component("warp-create-usage"));
+		setDescription(Lang.component("warp-create-description"));
 		setMinArguments(1);
 	}
 
@@ -21,9 +21,9 @@ public final class CreateSubCommand extends WarpAdminSubCommand {
 		final Player player = getPlayer();
 		final String warpName = args[0];
 
-		checkBoolean(!warpExists(warpName), "Warp '" + warpName + "' already exists!");
+		checkBoolean(!warpExists(warpName), Lang.component("warp-already-exists", "warp", warpName));
 
 		WarpPlugin.getInstance().getWarpManager().create(warpName, player.getLocation(), player);
-		tellSuccess("Warp '" + warpName + "' created!");
+		tellSuccess(Lang.component("warp-create-success", "warp", warpName));
 	}
 }

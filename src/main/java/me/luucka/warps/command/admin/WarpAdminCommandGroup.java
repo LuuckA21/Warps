@@ -14,7 +14,7 @@ public final class WarpAdminCommandGroup extends SimpleCommandGroup {
 	private final static SimpleCommandGroup instance = new WarpAdminCommandGroup();
 
 	private WarpAdminCommandGroup() {
-		super("warpadmin/wadmin/wa");
+		super("warpadmin/wadmin");
 	}
 
 	@Override

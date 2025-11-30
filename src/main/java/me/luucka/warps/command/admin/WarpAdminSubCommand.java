@@ -4,6 +4,7 @@ import me.luucka.warps.WarpPlugin;
 import me.luucka.warps.model.Warp;
 import org.mineacademy.fo.command.SimpleCommandGroup;
 import org.mineacademy.fo.command.SimpleSubCommand;
+import org.mineacademy.fo.settings.Lang;
 
 import java.util.List;
 
@@ -20,7 +21,7 @@ public abstract class WarpAdminSubCommand extends SimpleSubCommand {
 
 	protected final Warp getWarp(final String name) {
 		final Warp warp = WarpPlugin.getInstance().getWarpManager().get(name);
-		checkNotNull(warp, "Warp '" + name + "' not found!");
+		checkNotNull(warp, Lang.component("warp-not-found", "warp", name));
 		return warp;
 	}
 

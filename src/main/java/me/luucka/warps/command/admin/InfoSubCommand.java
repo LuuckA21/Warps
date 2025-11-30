@@ -1,8 +1,8 @@
 package me.luucka.warps.command.admin;
 
 import me.luucka.warps.model.Warp;
-import org.bukkit.entity.Player;
 import org.mineacademy.fo.command.SimpleCommandGroup;
+import org.mineacademy.fo.settings.Lang;
 
 import java.util.List;
 
@@ -10,9 +10,8 @@ public final class InfoSubCommand extends WarpAdminSubCommand {
 
 	InfoSubCommand(final SimpleCommandGroup parent) {
 		super(parent, "info");
-//		this.setPermission(Permissions.Channel.JOIN.replace(".{channel}.{mode}", ""));
-		setUsage("<name>");
-		setDescription("Displays information about a warp");
+		setUsage(Lang.component("warp-info-usage"));
+		setDescription(Lang.component("warp-info-description"));
 		setMinArguments(1);
 	}
 
@@ -20,11 +19,10 @@ public final class InfoSubCommand extends WarpAdminSubCommand {
 	protected void onCommand() {
 		checkConsole();
 
-		final Player player = getPlayer();
 		final String warpName = args[0];
 
 		final Warp warp = getWarp(warpName);
-		player.sendMessage(warp.getWarpInfo());
+		tell(warp.getWarpInfo());
 	}
 
 	@Override

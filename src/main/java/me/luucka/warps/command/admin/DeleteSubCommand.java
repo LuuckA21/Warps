@@ -5,6 +5,7 @@ import me.luucka.warps.menu.ConfirmationMenu;
 import me.luucka.warps.model.Warp;
 import org.bukkit.entity.Player;
 import org.mineacademy.fo.command.SimpleCommandGroup;
+import org.mineacademy.fo.settings.Lang;
 
 import java.util.List;
 
@@ -12,9 +13,8 @@ public final class DeleteSubCommand extends WarpAdminSubCommand {
 
 	DeleteSubCommand(final SimpleCommandGroup parent) {
 		super(parent, "delete");
-//		this.setPermission(Permissions.Channel.JOIN.replace(".{channel}.{mode}", ""));
-		setUsage("<name>");
-		setDescription("Delete a warp");
+		setUsage(Lang.component("warp-delete-usage"));
+		setDescription(Lang.component("warp-delete-description"));
 		setMinArguments(1);
 		setMaxArguments(2);
 	}
@@ -43,7 +43,7 @@ public final class DeleteSubCommand extends WarpAdminSubCommand {
 			if (confirmed) {
 				deleteWarp(warp);
 			} else {
-				tellError("Deletion cancelled!");
+				tellError(Lang.component("warp-delete-cancel"));
 			}
 		}).displayTo(player);
 
@@ -59,6 +59,6 @@ public final class DeleteSubCommand extends WarpAdminSubCommand {
 
 	private void deleteWarp(final Warp warp) {
 		WarpPlugin.getInstance().getWarpManager().delete(warp);
-		tellSuccess("Warp '" + warp.getName() + "' successfully deleted!");
+		tellSuccess(Lang.component("warp-delete-success", "warp", warp.getName()));
 	}
 }

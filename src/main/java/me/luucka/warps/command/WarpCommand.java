@@ -3,15 +3,15 @@ package me.luucka.warps.command;
 import me.luucka.warps.model.Warp;
 import org.bukkit.entity.Player;
 import org.mineacademy.fo.annotation.AutoRegister;
+import org.mineacademy.fo.settings.Lang;
 
-import java.util.Collections;
 import java.util.List;
 
 @AutoRegister
 public final class WarpCommand extends WarpBaseCommand {
 
 	public WarpCommand() {
-		super("warp", Collections.singletonList("w"));
+		super("warp");
 		setMinArguments(1);
 	}
 
@@ -23,9 +23,8 @@ public final class WarpCommand extends WarpBaseCommand {
 		final String warpName = args[0];
 		final Warp warp = getWarp(warpName);
 
-		checkNotNull(warp, "Warp '" + warpName + "' not found!");
-		checkBoolean(warp.isEnabled(), "Warp '" + warpName + "' is disabled!");
-		checkBoolean(warp.canPlayerUse(player), String.format("You do not have permission to use warp '%s'.", warpName));
+		checkBoolean(warp.isEnabled(), Lang.component("warp-disable", "warp", warpName));
+		checkBoolean(warp.canPlayerUse(player), Lang.component("warp-player-no-permission", "warp", warpName));
 
 		warp.teleport(player);
 	}
