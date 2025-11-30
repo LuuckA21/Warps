@@ -2,6 +2,7 @@ package me.luucka.warps.command.admin;
 
 import me.luucka.warps.WarpPlugin;
 import me.luucka.warps.menu.ConfirmationMenu;
+import me.luucka.warps.model.Permissions;
 import me.luucka.warps.model.Warp;
 import org.bukkit.entity.Player;
 import org.mineacademy.fo.command.SimpleCommandGroup;
@@ -13,6 +14,7 @@ public final class DeleteSubCommand extends WarpAdminSubCommand {
 
 	DeleteSubCommand(final SimpleCommandGroup parent) {
 		super(parent, "delete");
+		setPermission(Permissions.Command.DELETE);
 		setUsage(Lang.component("warp-delete-usage"));
 		setDescription(Lang.component("warp-delete-description"));
 		setMinArguments(1);

@@ -1,5 +1,6 @@
 package me.luucka.warps.command.admin;
 
+import me.luucka.warps.model.Permissions;
 import me.luucka.warps.model.Warp;
 import org.mineacademy.fo.command.SimpleCommandGroup;
 import org.mineacademy.fo.settings.Lang;
@@ -10,6 +11,7 @@ public final class InfoSubCommand extends WarpAdminSubCommand {
 
 	InfoSubCommand(final SimpleCommandGroup parent) {
 		super(parent, "info");
+		setPermission(Permissions.Command.INFO);
 		setUsage(Lang.component("warp-info-usage"));
 		setDescription(Lang.component("warp-info-description"));
 		setMinArguments(1);

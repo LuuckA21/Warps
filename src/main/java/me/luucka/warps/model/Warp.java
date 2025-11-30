@@ -3,7 +3,6 @@ package me.luucka.warps.model;
 import com.google.gson.JsonElement;
 import lombok.Getter;
 import me.luucka.warps.database.WarpsTable;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.mineacademy.fo.TimeUtil;
@@ -16,6 +15,8 @@ import org.mineacademy.fo.model.Tuple;
 import org.mineacademy.fo.settings.Lang;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -122,7 +123,7 @@ public final class Warp extends Row {
 	// Other
 
 	public SimpleComponent getWarpInfo() {
-		final SimpleComponent component = SimpleComponent.empty();
+		final List<SimpleComponent> components = new ArrayList<>();
 
 		for (final JsonElement element : Lang.dictionary().getAsJsonArray("warp-info-text")) {
 			String line = element.getAsString();
@@ -141,10 +142,9 @@ public final class Warp extends Row {
 			line = line.replace("{created}", TimeUtil.getFormattedDate(createdAt));
 			line = line.replace("{modified}", TimeUtil.getFormattedDate(lastModified));
 
-			component.append(SimpleComponent.fromMiniAmpersand(line)).append(Component.newline());
+			components.add(SimpleComponent.fromMiniAmpersand(line));
 		}
-
-		return component;
+		return SimpleComponent.join(components);
 	}
 
 	//------------------------------------------------------------------------------------------------------------------

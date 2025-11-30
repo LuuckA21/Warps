@@ -1,11 +1,9 @@
 package me.luucka.warps.command.admin;
 
 import lombok.Getter;
+import me.luucka.warps.model.Permissions;
 import org.mineacademy.fo.annotation.AutoRegister;
-import org.mineacademy.fo.command.DebugSubCommand;
-import org.mineacademy.fo.command.DumpLocaleSubCommand;
-import org.mineacademy.fo.command.ReloadSubCommand;
-import org.mineacademy.fo.command.SimpleCommandGroup;
+import org.mineacademy.fo.command.*;
 
 @AutoRegister
 public final class WarpAdminCommandGroup extends SimpleCommandGroup {
@@ -26,5 +24,6 @@ public final class WarpAdminCommandGroup extends SimpleCommandGroup {
 		registerSubcommand(new DebugSubCommand());
 		registerSubcommand(new DumpLocaleSubCommand());
 		registerSubcommand(new ReloadSubCommand());
+		registerSubcommand(new PermsSubCommand(Permissions.class));
 	}
 }

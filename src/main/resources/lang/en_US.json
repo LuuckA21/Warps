@@ -129,6 +129,7 @@
   "player-invalid-uuid": "<red>Could not find a player from UUID {uuid}.",
   "player-not-online": "<red>Player {player} is not online on this server.",
   "player-not-played-before": "<red>Player {player} has not played before or we could not locate his disk data.",
+  "player-not-found": "<red>Player '{player}' not found!",
   "plugin-update-notification": [
     "<#ffdc7b>There is a new version of {plugin_name} available!",
     "<#ffdc7b>Yours: {plugin_version} New: {new_version} Released: {release_date}",
@@ -164,5 +165,18 @@
     "<gray>Enabled: <white>{enabled}",
     "<gray>Created at: <white>{created}",
     "<gray>Last modified: <white>{modified}"
-  ]
+  ],
+  "warp-edit-usage": "<name> <attribute> [value]",
+  "warp-edit-usage-displayname": "/{label} {sublabel} <warp> displayname <value> <gray>- Change the display name of the warp",
+  "warp-edit-usage-location": "/{label} {sublabel} <warp> location <gray>- Change the location of the warp with current player's location",
+  "warp-edit-usage-owner": "/{label} {sublabel} <warp> owner <value> <gray>- Change the owner of the warp",
+  "warp-edit-usage-permission-protected": "/{label} {sublabel} <warp> permission_protected <gray>- Toggle permission protection for the warp",
+  "warp-edit-usage-enabled": "/{label} {sublabel} <warp> enabled <gray>- Toggle the enabled state of the warp",
+  "warp-edit-description": "Edit a Warp",
+  "warp-edit-invalid-attribute": "Invalid attribute, available: {available}.",
+  "warp-edit-displayname": "<gray>Warp '{warp}' displayname changed to '{displayname}'!",
+  "warp-edit-location": "<gray>Warp '{warp}' location changed to your location!",
+  "warp-edit-owner": "<gray>Warp '{warp}' owner changed to '{owner}'!",
+  "warp-edit-permission-protected": "<gray>Warp '{warp}' permission protection changed to {state}!",
+  "warp-edit-enabled": "<gray>Warp '{warp}' enabled state changed to {state}!"
 }
