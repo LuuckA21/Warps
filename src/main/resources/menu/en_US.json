@@ -1,0 +1,18 @@
+{
+  "case-block": "block, blocks",
+  "case-command": "command, commands",
+  "case-day": "day, days",
+  "case-hour": "hour, hours",
+  "case-message": "message, messages",
+  "case-minute": "minute, minutes",
+  "case-month": "month, months",
+  "case-player": "player, players",
+  "case-region": "region, regions",
+  "case-second": "second, seconds",
+  "case-time": "time, times",
+  "case-week": "week, weeks",
+  "case-year": "year, years",
+  "chat-line": "*---------------------------------------------------*",
+  "chat-line-smooth": "<st>-----------------------------------------------------</st>",
+  "test": "test"
+}

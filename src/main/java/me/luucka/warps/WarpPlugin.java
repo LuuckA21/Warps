@@ -4,6 +4,7 @@ import lombok.Getter;
 import me.luucka.warps.database.Database;
 import me.luucka.warps.manager.UniqueIdNameCacheManager;
 import me.luucka.warps.manager.WarpManager;
+import me.luucka.warps.setting.MenuSettings;
 import org.mineacademy.fo.platform.BukkitPlugin;
 
 public final class WarpPlugin extends BukkitPlugin {
@@ -14,17 +15,21 @@ public final class WarpPlugin extends BukkitPlugin {
 	@Getter
 	private UniqueIdNameCacheManager uniqueIdNameCacheManager;
 
-//	@Override
-//	public String[] getStartupLogo() {
-//		return new String[]{
-//				" __  ___  __  .___________. _______   ______   .______        _______  _______",
-//				"|  |/  / |  | |           ||   ____| /  __  \\  |   _  \\      /  _____||   ____|",
-//				"|  '  /  |  | `---|  |----`|  |__   |  |  |  | |  |_)  |    |  |  __  |  |__   ",
-//				"|    <   |  |     |  |     |   __|  |  |  |  | |      /     |  | |_ | |   __|",
-//				"|  .  \\  |  |     |  |     |  |     |  `--'  | |  |\\  \\----.|  |__| | |  |____ ",
-//				"|__|\\__\\ |__|     |__|     |__|      \\______/  | _| `._____| \\______| |_______|"
-//		};
-//	}
+	@Override
+	public String[] getStartupLogo() {
+		return new String[]{
+				" __    __   ____  ____   ____    _____",
+				"|  |__|  | /    ||    \\ |    \\  / ___/",
+				"|  |  |  ||  o  ||  D  )|  o  )(   \\_ ",
+				"|  |  |  ||     ||    / |   _/  \\__  |",
+				"|  `  '  ||  _  ||    \\ |  |    /  \\ |",
+				" \\      / |  |  ||  .  \\|  |    \\    |",
+				"  \\_/\\_/  |__|__||__|\\_||__|     \\___|",
+				" "
+		};
+
+
+	}
 
 	@Override
 	protected void onPluginLoad() {
@@ -33,11 +38,12 @@ public final class WarpPlugin extends BukkitPlugin {
 
 	@Override
 	protected void onPluginPreStart() {
-		super.onPluginPreStart();
 	}
 
 	@Override
 	protected void onPluginStart() {
+		MenuSettings.Storage.load();
+		MenuSettings.Storage.createAndDumpToFile();
 		uniqueIdNameCacheManager = new UniqueIdNameCacheManager();
 		warpManager = new WarpManager();
 	}
